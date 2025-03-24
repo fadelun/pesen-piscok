@@ -1,36 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Inter", "ui-sans-serif", "system-ui";
+  --color-primary: #f4e409;
+  --color-secondary: #eeba0b;
+  --accent: #c36f09;
+  --danger: #a63c06;
+  --dark: #710000;
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  /* ... */
+}
+
+@layer base {
+  h1 {
+    font-family: "Poppins";
+    font-weight: var(--font-weight-bold);
+  }
+  h2 {
+    font-family: "Poppins";
+    font-weight: var(--font-weight-semibold);
+  }
+  h3 {
+    font-family: "Poppins";
+    font-weight: var(--font-weight-semibold);
+  }
+  h4 {
+    font-family: "Poppins";
+    font-weight: var(--font-weight-semibold);
+  }
+}
 
 #root {
   max-width: 1280px;
   margin: 0 auto;
-
+  font-family: "Inter", "sans-serif";
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
