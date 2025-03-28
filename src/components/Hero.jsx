@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="text-gray-600 body-font min-h-80">
       <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <div className="lg:max-w-lg md:w-1/2 lg:w-2/3 w-5/6 mb-10 md:mb-0">
           <img
             className="object-cover object-center rounded"
             alt="gambar piscok - hero"
@@ -23,9 +23,7 @@ export default function Hero() {
             manis. Limited stock!
           </p>
           <div className="flex justify-center">
-            <button className=" inline-block rounded-sm bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:cursor-pointer hover:scale-110 hover:rotate-2 focus:ring-3 focus:outline-hidden">
-              BELI SEKARANG
-            </button>
+            <button className=" button-primary">BELI SEKARANG</button>
           </div>
         </div>
       </div>

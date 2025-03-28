@@ -8,6 +8,7 @@ const piscokCart = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const item = state.value.find((item) => item.id === action.payload.id);
+      console.log(action.payload);
 
       // jika ada item yang sama maka tambahkan amount
       if (item) {
@@ -42,11 +43,19 @@ const piscokCart = createSlice({
   },
 });
 
-export default cartSlice.reducer;
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } =
-  piscokCart.actions;
+export default piscokCart.reducer;
+export const {
+  addToCart,
+  removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
+  showModal,
+} = piscokCart.actions;
 
 export const totalJumlahBarang = (state) =>
   state.cart.value.reduce((acc, current) => acc + current.amount, 0);
 export const totalJumlahHarga = (state) =>
-  state.cart.value.reduce((acc, current) => acc + current.price, 0);
+  state.cart.value.reduce(
+    (acc, current) => acc + current.amount * current.price,
+    0,
+  );

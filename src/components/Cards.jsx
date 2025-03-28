@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/piscokCart";
+import formatPrice from "../utils/formatPrice";
 
+import Alert from "./Alert";
 import ProductImg from "../assets/product_1.jpg";
 
 export default function Cards({ products }) {
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = ({ id, title, price, count, amount }) => {
+    setShowAlert(true);
+    setAlertMessage(`Berhasil memasukkan ${title} isi ${count} kek keranjang`);
+    dispatch(addToCart({ id, title, price, count, amount }));
+
+    setTimeout(() => {
+      setShowAlert(false);
+      setAlertMessage("");
+    }, 5000); // 120000 milliseconds = 2 minutes
+  };
+
   return (
     <section className=" body-font">
       <div className="container px-5 py-24 mx-auto">
@@ -10,9 +30,9 @@ export default function Cards({ products }) {
           Menu
         </h2>
         <div className=" grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {products.map((product) => (
+          {products.map(({ id, title, count, price }) => (
             <div
-              key={product.id}
+              key={id}
               className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
             >
               <img
@@ -22,46 +42,29 @@ export default function Cards({ products }) {
               />
               <div className="flex flex-col justify-between p-4 space-y-2">
                 <div className=" text-left">
-                  <h3 className="text-2xl font-semibold ">{product.title}</h3>
+                  <p className="text-2xl font-semibold ">{title}</p>
                   <p className="text-xl font-semibold text-slate-500 tracking-wide mb-4">
-                    isi - {product.count}
+                    isi {count}
                   </p>
-                  <p className="text-3xl font-bold">Rp{product.price}</p>
+                  <h3 className="text-3xl font-bold">
+                    Rp {formatPrice(price)}
+                  </h3>
                 </div>
                 <button
                   type="button"
-                  className="group hover:cursor-pointer relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden  rounded-md "
+                  className="button-primary"
+                  onClick={() =>
+                    handleAddToCart({ id, title, price, count, amount: 1 })
+                  }
                 >
-                  <span className="absolute inset-0 border border-red-600"></span>
-                  <span className="block border border-red-600 bg-red-600 px-12 py-3 transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1">
-                    Pesan
-                  </span>
+                  Pesan
                 </button>
               </div>
             </div>
           ))}
-          {/* {products.map((product) => (
-            <div className="w-full   bg-orange-300">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src={ProductImg}
-                />
-              </a>
-              <div className="mt-4">
-                <h2 className="text-gray-500 text-xl font-bold  title-font mb-1">
-                  {product.title}
-                </h2>
-                <h3 className="text-gray-900 title-font tracking-widest text-xs ">
-                  isi {product.count}
-                </h3>
-                <p className="mt-1">{product.price}</p>
-              </div>
-            </div>
-          ))} */}
         </div>
       </div>
+      {showAlert && <Alert message={alertMessage} />}
     </section>
   );
 }

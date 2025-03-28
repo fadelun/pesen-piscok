@@ -1,7 +1,7 @@
 import Hero from "../components/Hero";
-import Cards from "../components/Cards";
 import Pricing from "../components/Pricing";
 import Services from "../components/Services";
+import Cards from "../components/Cards";
 
 import { useState } from "react";
 import piscokProducts from "../data/products";
@@ -16,7 +16,7 @@ export default function Home() {
       <Hero />
       <Cards products={slicedProducts} />
       <Pricing />
-      {/* <Services /> */}
+      <Services />
     </>
   );
 }
