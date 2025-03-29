@@ -21,9 +21,11 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between h-16 items-center px-4 sm:px-6 lg:px-8">
             {/* Logo */}
-            <div className="flex-1 flex items-center">
-              <span className="text-2xl font-bold text-blue-600">Logo</span>
-            </div>
+            <Link to="/" className="flex-1 flex items-center">
+              <span className="text-2xl font-bold text-yellow-500  ">
+                🍌 PesenPiscok
+              </span>
+            </Link>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8 mr-8">

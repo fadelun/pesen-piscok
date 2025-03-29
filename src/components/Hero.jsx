@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router";
+
 import HeroImg from "../assets/hero_img.jpg";
 import HeroImg02 from "../assets/hero_img_02.jpg";
 
@@ -23,7 +25,9 @@ export default function Hero() {
             manis. Limited stock!
           </p>
           <div className="flex justify-center">
-            <button className=" button-primary">BELI SEKARANG</button>
+            <Link to={"menu"} type="button" className=" button-primary">
+              BELI SEKARANG
+            </Link>
           </div>
         </div>
       </div>

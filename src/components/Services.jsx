@@ -6,12 +6,7 @@ export default function Services() {
       {" "}
       <div className="container mx-auto my-6 space-y-2 p-4 text-center">
         {" "}
-        <h2 className="text-5xl font-bold text-rose-400">
-          Tocinocode new feature
-        </h2>{" "}
-        <p className="dark:text-gray-400">
-          Lorem ipsum dolor sit amet consectetur.
-        </p>{" "}
+        <h2 className="text-5xl font-bold text-rose-400">Our Services</h2>{" "}
       </div>{" "}
       <div className="container mx-auto grid justify-center gap-4 md:grid-cols-3">
         {" "}
@@ -33,11 +28,14 @@ export default function Services() {
             ></path>{" "}
           </svg>{" "}
           <h3 className="my-3 text-3xl font-semibold text-gray-900 dark:text-gray-400">
-            Component
+            Variasi Pilihan Isi & Harga Terjangkau
           </h3>{" "}
           <div className="space-y-1 px-5 text-center leading-tight text-gray-600 dark:text-gray-400">
             {" "}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit!</p>{" "}
+            <p>
+              Pilih sesuai selera dan kebutuhan! Kami menyediakan varian isi 5
+              dan isi 7 dengan harga yang bersahaba
+            </p>{" "}
           </div>{" "}
         </div>{" "}
         <div className="flex max-w-xs flex-col items-center px-10">
@@ -58,11 +56,14 @@ export default function Services() {
             ></path>{" "}
           </svg>{" "}
           <h3 className="my-3 text-3xl font-semibold text-gray-900 dark:text-gray-400">
-            Component
+            Langsung antar ke tempat
           </h3>{" "}
           <div className="space-y-1 px-5 text-center leading-tight text-gray-600 dark:text-gray-400">
             {" "}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit!</p>{" "}
+            <p>
+              Anda tidak perlu lagi capek-capek untuk datan ke tokoh, cukup
+              pesan dan kami langsung antar di tempat
+            </p>{" "}
           </div>{" "}
         </div>{" "}
         <div className="flex max-w-xs flex-col items-center px-10">
@@ -83,11 +84,15 @@ export default function Services() {
             ></path>{" "}
           </svg>{" "}
           <h3 className="my-3 text-3xl font-semibold text-gray-900 dark:text-gray-400">
-            Component
+            Proses Produksi yang Higienis
           </h3>{" "}
           <div className="space-y-1 px-5 text-center leading-tight text-gray-600 dark:text-gray-400">
             {" "}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit!</p>{" "}
+            <p>
+              {" "}
+              Kami menjamin standar produksi tertinggi dengan proses higienis
+              dan teknologi modern untuk menjaga kualitas produk.
+            </p>{" "}
           </div>{" "}
         </div>{" "}
       </div>

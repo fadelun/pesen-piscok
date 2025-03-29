@@ -4,6 +4,7 @@ import Services from "../components/Services";
 import Cards from "../components/Cards";
 
 import { useState } from "react";
+import { Link } from "react-router";
 import piscokProducts from "../data/products";
 
 export default function Home() {
@@ -15,6 +16,11 @@ export default function Home() {
     <>
       <Hero />
       <Cards products={slicedProducts} />
+
+      <Link to="menu " className="underline">
+        Lihat menu lain
+      </Link>
+
       <Pricing />
       <Services />
     </>

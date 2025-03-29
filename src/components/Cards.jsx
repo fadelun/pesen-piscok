@@ -40,8 +40,6 @@ export default function Cards({ products }) {
         transition: Bounce,
       });
     }
-
-    // show alert
   };
   return (
     <section className="body-font">
@@ -49,7 +47,7 @@ export default function Cards({ products }) {
         <h2 className="text-2xl sm:text-3xl font-semibold text-left mb-8">
           Menu
         </h2>
-        <div className=" grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className=" grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3  gap-4">
           {products.map(({ id, title, count, price }) => (
             <div
               key={id}
