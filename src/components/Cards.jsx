@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../store/piscokCart";
 import formatPrice from "../utils/formatPrice";
 
-import Alert from "./Alert";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+
 import ProductImg from "../assets/product_1.jpg";
 
 export default function Cards({ products }) {
@@ -13,18 +14,37 @@ export default function Cards({ products }) {
   const dispatch = useDispatch();
 
   const handleAddToCart = ({ id, title, price, count, amount }) => {
-    setShowAlert(true);
-    setAlertMessage(`Berhasil memasukkan ${title} isi ${count} kek keranjang`);
-    dispatch(addToCart({ id, title, price, count, amount }));
+    if ((id, title)) {
+      dispatch(addToCart({ id, title, price, count, amount }));
+      toast.success(`Berhasil memasukkan ke keranjang`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } else {
+      toast.error(`Gagal memasukkan ke keranjang`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
 
-    setTimeout(() => {
-      setShowAlert(false);
-      setAlertMessage("");
-    }, 5000); // 120000 milliseconds = 2 minutes
+    // show alert
   };
-
   return (
-    <section className=" body-font">
+    <section className="body-font">
       <div className="container px-5 py-24 mx-auto">
         <h2 className="text-2xl sm:text-3xl font-semibold text-left mb-8">
           Menu
@@ -64,7 +84,7 @@ export default function Cards({ products }) {
           ))}
         </div>
       </div>
-      {showAlert && <Alert message={alertMessage} />}
+      <ToastContainer />
     </section>
   );
 }

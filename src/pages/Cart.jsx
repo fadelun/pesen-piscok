@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { Trash2 } from "lucide-react";
 import {
   removeFromCart,
   increaseQuantity,
@@ -6,16 +7,69 @@ import {
   totalJumlahHarga,
   totalJumlahBarang,
 } from "../store/piscokCart";
-import { openModal } from "../store/modalSlice";
 
 import formatPrice from "../utils/formatPrice";
 import ProductImg from "../assets/product_1.jpg";
+import Swal from "sweetalert2";
 
 export default function Cart() {
   const cartItems = useSelector((state) => state.cart.value);
   const totalBarang = useSelector(totalJumlahBarang);
   const totalHarga = useSelector(totalJumlahHarga);
   const dispatch = useDispatch();
+
+  const showModal = () => {
+    Swal.fire({
+      title: "Checkout Berhasil",
+      text: "Terima kasih atas pembelian Anda!",
+      icon: "success",
+    });
+  };
+
+  const handleModalChekout = () => {
+    Swal.fire({
+      title: "Kamu Yakin?",
+      text: `Total belanjaanmu Rp ${formatPrice(
+        totalHarga,
+      )} yakin mau melanjutkkan`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Eh, bentar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Checkout Berhasil!",
+          text: "Terima kasih atas pembelian Anda!",
+          icon: "success",
+        });
+      }
+    });
+  };
+
+  const handleRemoveItem = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      // dispatch(removeFromCart({ id: item.id })
+      if (result.isConfirmed) {
+        dispatch(removeFromCart(id));
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   return (
     <section>
@@ -44,13 +98,14 @@ export default function Cart() {
                       <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
                         <div>{item.count}</div>
 
-                        <div>{item.price}</div>
+                        <div>Rp {formatPrice(item.price)}</div>
                       </dl>
                     </div>
 
                     <div className="flex flex-1 items-center justify-end gap-2">
                       <div className="flex justify-center gap-2">
                         <button
+                          className="text-gray-700 bg-gray-200 px-2  rounded-sm hover:cursor-pointer"
                           onClick={() =>
                             dispatch(decreaseQuantity({ id: item.id }))
                           }
@@ -58,8 +113,9 @@ export default function Cart() {
                           -
                         </button>
 
-                        <p>{item.amount}</p>
+                        <p className="w-6 ">{item.amount}</p>
                         <button
+                          className="text-gray-700 bg-gray-200 px-2  rounded-sm hover:cursor-pointer"
                           onClick={() =>
                             dispatch(increaseQuantity({ id: item.id }))
                           }
@@ -69,27 +125,10 @@ export default function Cart() {
                       </div>
 
                       <button
-                        onClick={() =>
-                          dispatch(removeFromCart({ id: item.id }))
-                        }
-                        className="text-gray-600 transition hover:text-red-600"
+                        onClick={() => handleRemoveItem({ id: item.id })}
+                        className="text-gray-600 transition hover:text-red-600 hover:cursor-pointer"
                       >
-                        <span className="sr-only">Remove item</span>
-
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="size-4"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                          />
-                        </svg>
+                        <Trash2 />
                       </button>
                     </div>
                   </li>
@@ -110,8 +149,8 @@ export default function Cart() {
 
                 <div className="flex justify-end">
                   <button
-                    onClick={() => dispatch(openModal())}
-                    className="block rounded-sm bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                    onClick={handleModalChekout}
+                    className="block  rounded-sm bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600 hover:cursor-pointer"
                   >
                     Checkout
                   </button>

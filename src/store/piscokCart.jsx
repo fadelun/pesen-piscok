@@ -33,11 +33,12 @@ const piscokCart = createSlice({
       if (item) {
         if (item.amount > 1) {
           item.amount -= 1; // Kurangi amount
-        } else {
-          state.value = state.value.filter(
-            (item) => item.id !== action.payload.id,
-          ); // Hapus item jika amount 0
         }
+        // else {
+        //   state.value = state.value.filter(
+        //     (item) => item.id !== action.payload.id,
+        //   ); // Hapus item jika amount 0
+        // }
       }
     },
   },
