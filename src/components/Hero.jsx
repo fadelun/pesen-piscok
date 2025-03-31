@@ -6,9 +6,9 @@ import HeroImg02 from "../assets/hero_img_02.jpg";
 
 export default function Hero() {
   return (
-    <section className="text-gray-600 body-font min-h-80">
+    <section className="text-gray-600 bg-slate-100 body-font min-h-80">
       <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-        <div className="lg:max-w-lg md:w-1/2 lg:w-2/3 w-5/6 mb-10 md:mb-0">
+        <div className=" md:w-1/2  w-5/6 mb-10 md:mb-0">
           <img
             className="object-cover object-center rounded"
             alt="gambar piscok - hero"

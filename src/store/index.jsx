@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import piscokCart from "./piscokCart";
+import cartSlice from "./cartSlice";
 
 export default configureStore({
   reducer: {
-    cart: piscokCart,
+    cart: cartSlice,
   },
 });

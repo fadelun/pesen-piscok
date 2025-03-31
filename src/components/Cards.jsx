@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/piscokCart";
+import { addToCart } from "../store/cartSlice";
 import formatPrice from "../utils/formatPrice";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
@@ -8,14 +7,11 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import ProductImg from "../assets/product_1.jpg";
 
 export default function Cards({ products }) {
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-
   const dispatch = useDispatch();
 
-  const handleAddToCart = ({ id, title, price, count, amount }) => {
+  const handleAddToCart = ({ id, title, price, count, quantity }) => {
     if ((id, title)) {
-      dispatch(addToCart({ id, title, price, count, amount }));
+      dispatch(addToCart({ id, title, price, count, quantity }));
       toast.success(`Berhasil memasukkan ke keranjang`, {
         position: "top-center",
         autoClose: 3000,
@@ -42,45 +38,49 @@ export default function Cards({ products }) {
     }
   };
   return (
-    <section className="body-font">
-      <div className="container px-5 py-24 mx-auto">
-        <h2 className="text-2xl sm:text-3xl font-semibold text-left mb-8">
-          Menu
-        </h2>
-        <div className=" grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3  gap-4">
-          {products.map(({ id, title, count, price }) => (
-            <div
-              key={id}
-              className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
-            >
-              <img
-                src={ProductImg}
-                alt="gambar piscok"
-                className="object-cover object-center w-full rounded-t-md h-68 dark:bg-gray-500"
-              />
-              <div className="flex flex-col justify-between p-4 space-y-2">
-                <div className=" text-left">
-                  <p className="text-2xl font-semibold ">{title}</p>
-                  <p className="text-xl font-semibold text-slate-500 tracking-wide mb-4">
-                    isi {count}
-                  </p>
-                  <h3 className="text-3xl font-bold">
-                    Rp {formatPrice(price)}
-                  </h3>
-                </div>
-                <button
-                  type="button"
-                  className="button-primary"
-                  onClick={() =>
-                    handleAddToCart({ id, title, price, count, amount: 1 })
-                  }
-                >
-                  Pesan
-                </button>
-              </div>
+    <section className="my-8">
+      <div className=" grid grid-cols-1 gap-6 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 place-items-center  ">
+        {products.map(({ id, title, count, price }) => (
+          <div
+            key={id}
+            className="max-w-sm border border-primary/75 w-full bg-white rounded-lg shadow-md overflow-hidden mx-2 my-4 hover:shadow-lg transition-shadow duration-300"
+          >
+            {/* Gambar Produk */}
+            <img
+              className="w-full h-86 object-cover rounded-t-lg"
+              src={ProductImg}
+              alt={title}
+            />
+
+            {/* Konten Card */}
+            <div className="p-5">
+              {/* Judul */}
+              <h3 className="text-xl font-semibold text-gray-800 mb-2 truncate">
+                {title}
+              </h3>
+              <p className="text-xl font-semibold text-slate-500 tracking-wide mb-4">
+                isi {count}
+              </p>
+
+              {/* Harga */}
+              <p className="text-2xl font-bold text-dark mb-4">
+                Rp{formatPrice(price)}
+              </p>
+
+              {/* Tombol Pesan */}
+              <button
+                onClick={() =>
+                  dispatch(
+                    handleAddToCart({ id, title, price, count, quantity: 1 }),
+                  )
+                }
+                className="button-primary"
+              >
+                Pesan Sekarang
+              </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
       <ToastContainer />
     </section>

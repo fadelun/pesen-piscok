@@ -5,10 +5,9 @@
 @theme {
   --font-inter: "Inter", "ui-sans-serif", "system-ui";
   --font-poppins: "Poppins", "sans-serif";
-  --color-primary: #f4e409;
+  --color-primary: #ffd93d;
   --color-secondary: #eeba0b;
-  --color-accent: #c36f09;
-  --color-danger: #a63c06;
+  --color-chocolate: #c36f09;
   --color-dark: #710000;
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
@@ -37,6 +36,9 @@
 @layer component {
   .button-primary {
     @apply px-7 py-2 rounded-sm font-medium text-white bg-amber-900 transition hover:cursor-pointer hover:scale-110 hover:rotate-2 focus:ring-3 focus:outline-hidden;
+  }
+  .button-secondary {
+    @apply px-7 py-2 rounded-sm font-medium text-dark bg-yellow-200 transition hover:cursor-pointer hover:scale-110 hover:rotate-2 focus:ring-3 focus:outline-hidden;
   }
 }
 
