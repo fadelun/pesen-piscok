@@ -58,7 +58,7 @@ export default function Cart() {
   const handleMessageCheckout = () => {
     const message = generateWhatsAppMessage();
     const encodedMessage = encodeURIComponent(message);
-    const phoneNumber = "628123456789"; // Ganti dengan nomor penjual
+    const phoneNumber = "6281271269864";
 
     window.open(
       `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
