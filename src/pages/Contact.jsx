@@ -3,7 +3,7 @@ import React from "react";
 export default function Contact() {
   return (
     <section class="text-gray-600 body-font relative">
-      <div class="mx-auto min-h-[80vh] max-w-screen-xl px-4 py-8 sm:px-6 sm:py-32 lg:px-8">
+      <div class="mx-auto min-h-[80vh] max-w-screen-xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
         <div class="flex flex-col text-center w-full mb-12">
           <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
             Contact Us
@@ -15,7 +15,7 @@ export default function Contact() {
         </div>
         <div class="lg:w-1/2 md:w-2/3 mx-auto">
           <div class="flex flex-wrap -m-2">
-            <div class="p-2 w-1/2">
+            <div class="p-2 w-full md:w-1/2">
               <div class="relative">
                 <label for="name" class="leading-7 text-sm text-gray-600">
                   Name
@@ -28,7 +28,7 @@ export default function Contact() {
                 />
               </div>
             </div>
-            <div class="p-2 w-1/2">
+            <div class="p-2 w-full md:w-1/2">
               <div class="relative">
                 <label for="email" class="leading-7 text-sm text-gray-600">
                   Email

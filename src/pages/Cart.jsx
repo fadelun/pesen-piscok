@@ -5,41 +5,15 @@ import {
   increaseQuantity,
   decreaseQuantity,
   totalJumlahHarga,
-  totalJumlahBarang,
 } from "../store/cartSlice";
 
 import formatPrice from "../utils/formatPrice";
-import ProductImg from "../assets/product_1.jpg";
 import Swal from "sweetalert2";
 
 export default function Cart() {
   const cartItems = useSelector((state) => state.cart.value);
-  const totalBarang = useSelector(totalJumlahBarang);
   const totalHarga = useSelector(totalJumlahHarga);
   const dispatch = useDispatch();
-
-  const handleModalChekout = () => {
-    Swal.fire({
-      title: "Kamu Yakin?",
-      text: `Total belanjaanmu Rp ${formatPrice(
-        totalHarga,
-      )} yakin mau melanjutkkan`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Ya",
-      cancelButtonText: "Eh, bentar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Checkout Berhasil!",
-          text: "Terima kasih atas pembelian Anda!",
-          icon: "success",
-        });
-      }
-    });
-  };
 
   const handleDecreaseQuantity = (item) => {
     if (item.quantity > 1) {
@@ -69,10 +43,59 @@ export default function Cart() {
     });
   };
 
+  const generateWhatsAppMessage = () => {
+    const itemsText = cartItems
+      .map(
+        (item) =>
+          `- ${item.title}(${item.count}) : ${item.quantity} * ${item.price}`,
+      )
+      .join("\n");
+
+    return `Halo, saya ingin memesan:\n${itemsText} \n Total: ${totalHarga}`;
+  };
+
+  // Handle checkout WhatsApp
+  const handleMessageCheckout = () => {
+    const message = generateWhatsAppMessage();
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = "628123456789"; // Ganti dengan nomor penjual
+
+    window.open(
+      `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
+      "_blank",
+    );
+  };
+
+  const handleCheckout = () => {
+    Swal.fire({
+      title: "Kamu Yakin?",
+      text: `Total belanjaanmu Rp ${formatPrice(
+        totalHarga,
+      )} yakin mau melanjutkkan`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Eh, bentar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTimeout(() => {
+          handleMessageCheckout();
+        }, 1000);
+        Swal.fire({
+          title: "Checkout Berhasil!",
+          text: "Terima kasih atas pembelian Anda!",
+          icon: "success",
+        });
+      }
+    });
+  };
+
   return (
     <section>
       {cartItems.length > 0 ? (
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto min-h-[80vh] max-w-screen-xl px-4 py-20 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <header className="text-center">
               <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
@@ -86,8 +109,8 @@ export default function Cart() {
                   cartItems.map((item, i) => (
                     <li key={i} className="flex items-center gap-4">
                       <img
-                        src={ProductImg}
-                        alt=""
+                        src={item.image}
+                        alt={item.title}
                         className="size-48 rounded-sm object-cover"
                       />
 
@@ -192,7 +215,7 @@ export default function Cart() {
 
                   <div className="flex justify-end">
                     <button
-                      onClick={handleModalChekout}
+                      onClick={() => handleCheckout()}
                       className="block  rounded-sm bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600 hover:cursor-pointer"
                     >
                       Checkout

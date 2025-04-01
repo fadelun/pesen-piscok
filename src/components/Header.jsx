@@ -4,51 +4,49 @@ import { NavLink, Link } from "react-router";
 
 import { useSelector } from "react-redux";
 import { totalJumlahBarang } from "../store/cartSlice";
-import logoImg from "../assets/logo.png";
 
 export default function Header() {
   const totalBarang = useSelector(totalJumlahBarang);
   const [isOpen, setIsOpen] = useState(false);
 
-  //   window.addEventListener("scroll", () => {
-  //     if (
-  //       document.body.scrollTop > 80 ||
-  //       document.documentElement.scrollTop > 80
-  //     ) {
-  //       headerRef.current.classList.add("bg-blue-300");
-  //     } else {
-  //       headerRef.current.classList.remove("bg-blue-300");
-  //     }
-  //   });
-
-  //   return () => window.removeEventListener("scroll");
-  // }, []);
+  const navigation = [
+    { name: "Home", link: "/" },
+    { name: "Menu", link: "/menu" },
+    { name: "Contact", link: "/contact" },
+  ];
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 bg-white shadow-md ">
-        <nav className={` mx-auto max-w-[1540px]  `}>
+      <header className="fixed inset-x-0 top-0 bg-white shadow-md z-50">
+        <nav className={` mx-auto max-w-[1540px] `}>
           <div className=" mx-auto px-4">
             <div className="flex justify-between h-16 items-center px-4 sm:px-6 lg:px-8">
               {/* Logo */}
               <div className="flex-1 flex items-center">
-                <Link to="/" className="text-2xl font-bold text-yellow-500  ">
+                <Link
+                  to="/"
+                  className="text-sm md:text-2xl font-bold text-yellow-500  "
+                >
                   🍌 PesenPiscok
                 </Link>
               </div>
 
               {/* Desktop Menu */}
-              <div className="hidden md:flex items-center space-x-8 mr-8">
-                <NavLink
-                  to="/menu"
-                  className={({ isActive }) =>
-                    `text-dark transition hover:text-dark/75 block ${
-                      isActive ? "font-bold" : "font-semibold"
-                    }`
-                  }
-                >
-                  Menu
-                </NavLink>
+              <div className="hidden md:text-md md:flex items-center gap-x-12 mr-18">
+                {navigation &&
+                  navigation.map((item, id) => (
+                    <NavLink
+                      key={id}
+                      to={item.link}
+                      className={({ isActive }) =>
+                        `text-dark transition hover:text-dark/75 block ${
+                          isActive ? "font-bold" : "font-medium"
+                        }`
+                      }
+                    >
+                      {item.name}
+                    </NavLink>
+                  ))}
               </div>
               <div
                 className="flex rounded-full

@@ -4,14 +4,12 @@ import formatPrice from "../utils/formatPrice";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 
-import ProductImg from "../assets/product_1.jpg";
-
 export default function Cards({ products }) {
   const dispatch = useDispatch();
 
-  const handleAddToCart = ({ id, title, price, count, quantity }) => {
-    if ((id, title)) {
-      dispatch(addToCart({ id, title, price, count, quantity }));
+  const handleAddToCart = (item) => {
+    if ((item.id, item.title)) {
+      dispatch(addToCart(item));
       toast.success(`Berhasil memasukkan ke keranjang`, {
         position: "top-center",
         autoClose: 3000,
@@ -40,7 +38,7 @@ export default function Cards({ products }) {
   return (
     <section className="my-8">
       <div className=" grid grid-cols-1 gap-6 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 place-items-center  ">
-        {products.map(({ id, title, count, price }) => (
+        {products.map(({ id, title, image, count, price }) => (
           <div
             key={id}
             className="max-w-sm border border-primary/75 w-full bg-white rounded-lg shadow-md overflow-hidden mx-2 my-4 hover:shadow-lg transition-shadow duration-300"
@@ -48,7 +46,7 @@ export default function Cards({ products }) {
             {/* Gambar Produk */}
             <img
               className="w-full h-86 object-cover rounded-t-lg"
-              src={ProductImg}
+              src={image}
               alt={title}
             />
 
@@ -71,7 +69,14 @@ export default function Cards({ products }) {
               <button
                 onClick={() =>
                   dispatch(
-                    handleAddToCart({ id, title, price, count, quantity: 1 }),
+                    handleAddToCart({
+                      id,
+                      title,
+                      image,
+                      price,
+                      count,
+                      quantity: 1,
+                    }),
                   )
                 }
                 className="button-primary"
