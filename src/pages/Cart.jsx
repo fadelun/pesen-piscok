@@ -47,11 +47,11 @@ export default function Cart() {
     const itemsText = cartItems
       .map(
         (item) =>
-          `- ${item.title}(${item.count}) : ${item.quantity} * ${item.price}`,
+          `- ${item.title}(${item.count}) : ${item.quantity} x ${item.price}`,
       )
       .join("\n");
 
-    return `Halo, saya ingin memesan:\n${itemsText} \n Total: ${totalHarga}`;
+    return `Halo, saya ingin memesan:\n${itemsText} \n *Total: ${totalHarga}*`;
   };
 
   // Handle checkout WhatsApp
@@ -111,19 +111,19 @@ export default function Cart() {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="size-48 rounded-sm object-cover"
+                        className="size-20 md:size-48 rounded-sm object-cover"
                       />
 
                       <div className="text-start flex flex-col">
-                        <h3 className=" text-xl text-gray-900 mb-2">
+                        <h3 className="text-md md:text-xl text-gray-900 md:mb-2">
                           {item.title}
                         </h3>
 
-                        <div className="mb-8 space-y-px text-xl text-gray-600">
+                        <div className="mb-4 md:mb-8 space-y-px text-sm text-gray-600">
                           Isi: {item.count}
                         </div>
 
-                        <div className="text-2xl">
+                        <div className="text-md md:text-2xl">
                           Rp {formatPrice(item.price)}
                         </div>
                       </div>
@@ -132,9 +132,6 @@ export default function Cart() {
                         <div className="flex justify-center gap-2">
                           <button
                             className="text-gray-700 bg-gray-200 px-2  rounded-sm hover:cursor-pointer"
-                            // onClick={() =>
-                            //   dispatch(decreaseQuantity({ id: item.id }))
-                            // }
                             onClick={() => handleDecreaseQuantity(item)}
                           >
                             -
@@ -207,7 +204,7 @@ export default function Cart() {
               <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
                 <div className="w-screen max-w-lg space-y-4">
                   <dl className="space-y-0.5 text-sm text-gray-700">
-                    <div className="flex justify-between text-2xl font-medium">
+                    <div className="flex justify-between text-xl md:text-2xl font-medium">
                       <dt>Total</dt>
                       <dd>Rp {formatPrice(totalHarga)}</dd>
                     </div>

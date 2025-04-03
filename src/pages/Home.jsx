@@ -17,7 +17,7 @@ export default function Home() {
       <Hero />
 
       <section className="container mx-auto menu pb-16 pt-12">
-        <h2 className="text-5xl font-bold mb-4">Popular Menu</h2>{" "}
+        <h2 className="text-2xl md:text-5xl font-bold mb-4">Popular Menu</h2>{" "}
         <Cards products={slicedProducts} />
         <Link type="button" to="menu" className="button-secondary ">
           Tampilkan lebih banyak <ChevronsRight className="inline" />

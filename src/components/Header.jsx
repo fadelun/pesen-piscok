@@ -20,12 +20,12 @@ export default function Header() {
       <header className="fixed inset-x-0 top-0 bg-white shadow-md z-50">
         <nav className={` mx-auto max-w-[1540px] `}>
           <div className=" mx-auto px-4">
-            <div className="flex justify-between h-16 items-center px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between h-16 items-center sm:px-6 lg:px-8">
               {/* Logo */}
               <div className="flex-1 flex items-center">
                 <Link
                   to="/"
-                  className="text-sm md:text-2xl font-bold text-yellow-500  "
+                  className="text-lg md:text-2xl font-bold text-yellow-500  "
                 >
                   🍌 PesenPiscok
                 </Link>
@@ -64,7 +64,7 @@ export default function Header() {
               </div>
 
               {/* Mobile menu button */}
-              <div className="md:hidden flex items-center">
+              <div className="md:hidden  bg-blue-200 flex items-center">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"

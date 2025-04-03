@@ -36,8 +36,8 @@ export default function Cards({ products }) {
     }
   };
   return (
-    <section className="my-8">
-      <div className=" grid grid-cols-1 gap-6 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 place-items-center  ">
+    <section className="my-8 container mx-auto px-4">
+      <div className=" grid  gap-6 grid-cols-2 lg:grid-cols-4  md:grid-cols-3 place-items-center  ">
         {products.map(({ id, title, image, count, price }) => (
           <div
             key={id}
@@ -45,23 +45,23 @@ export default function Cards({ products }) {
           >
             {/* Gambar Produk */}
             <img
-              className="w-full h-86 object-cover rounded-t-lg"
+              className="w-full h-42 md:h-86 object-cover rounded-t-lg"
               src={image}
               alt={title}
             />
 
             {/* Konten Card */}
-            <div className="p-5">
+            <div className="py-2 px-3 md:p-5 text-left md:text-center">
               {/* Judul */}
-              <h3 className="text-xl font-semibold text-gray-800 mb-2 truncate">
+              <h3 className=" text-sm md:text-xl font-semibold text-gray-800 md:mb-2 truncate">
                 {title}
               </h3>
-              <p className="text-xl font-semibold text-slate-500 tracking-wide mb-4">
+              <p className="text-xs md:text-xl font-semibold text-slate-500 tracking-wide mb-2 md:mb-4">
                 isi {count}
               </p>
 
               {/* Harga */}
-              <p className="text-2xl font-bold text-dark mb-4">
+              <p className="text-md md:text-2xl font-bold text-dark mb-2 md:mb-4">
                 Rp{formatPrice(price)}
               </p>
 
@@ -79,9 +79,10 @@ export default function Cards({ products }) {
                     }),
                   )
                 }
-                className="button-primary"
+                className="button-card"
               >
-                Pesan Sekarang
+                <span className="hidden md:inline">Pesan Sekarang</span>
+                <span className="inline md:hidden">Pesan</span>
               </button>
             </div>
           </div>
