@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { NavLink, Link } from "react-router";
+import { AnimatePresence, motion } from "motion/react";
 
 import { useSelector } from "react-redux";
 import { totalJumlahBarang } from "../store/cartSlice";
@@ -14,6 +15,9 @@ export default function Header() {
     { name: "Menu", link: "/menu" },
     { name: "Contact", link: "/contact" },
   ];
+
+  const MotionMenu = motion(Menu);
+  const MotionX = motion(X);
 
   return (
     <>
@@ -64,14 +68,28 @@ export default function Header() {
               </div>
 
               {/* Mobile menu button */}
-              <div className="md:hidden  bg-blue-200 flex items-center">
+              <div className="md:hidden  flex items-center">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
                   aria-expanded="false"
                 >
                   <span className="sr-only">Open main menu</span>
-                  {!isOpen ? <Menu /> : <X />}
+                  <AnimatePresence isOpen={false}>
+                    {!isOpen ? (
+                      <MotionMenu
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: 180 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    ) : (
+                      <MotionX
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: 180 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    )}
+                  </AnimatePresence>
                 </button>
               </div>
             </div>
@@ -79,8 +97,13 @@ export default function Header() {
 
           {/* Mobile Menu */}
           {isOpen && (
-            <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <div className="md:hidden ">
+              <motion.div
+                initial={{ translateY: -30 }}
+                animate={{ translateY: 0 }}
+                transition={{ duration: 0.1 }}
+                className="flex flex-col  px-2 pt-4 pb-6 space-y-4 sm:px-3"
+              >
                 {navigation.map((item) => (
                   <NavLink
                     to={item.link}
@@ -93,7 +116,7 @@ export default function Header() {
                     {item.name}
                   </NavLink>
                 ))}
-              </div>
+              </motion.div>
             </div>
           )}
         </nav>

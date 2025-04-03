@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "motion/react";
 import serviceImg1 from "../assets/service_1.png";
 import serviceImg2 from "../assets/service_2.png";
 import serviceImg3 from "../assets/service_3.png";
@@ -11,7 +11,12 @@ export default function Services() {
         {" "}
         <h2 className="text-5xl font-bold text-dark">Our Services</h2>{" "}
       </div>{" "}
-      <div className="container mx-auto grid justify-center gap-10 md:gap-4 md:grid-cols-3">
+      <motion.div
+        initial={{ x: -50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5, type: "spring" }}
+        className="container mx-auto grid justify-center gap-10 md:gap-4 md:grid-cols-3"
+      >
         {" "}
         <div className="flex  flex-col items-center justify-center px-10">
           {" "}
@@ -54,7 +59,7 @@ export default function Services() {
             </p>{" "}
           </div>{" "}
         </div>{" "}
-      </div>
+      </motion.div>
     </section>
   );
 }

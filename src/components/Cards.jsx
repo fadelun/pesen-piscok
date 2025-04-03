@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+import { motion } from "motion/react";
 import formatPrice from "../utils/formatPrice";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
@@ -39,7 +40,12 @@ export default function Cards({ products }) {
     <section className="my-8 container mx-auto px-4">
       <div className=" grid  gap-6 grid-cols-2 lg:grid-cols-4  md:grid-cols-3 place-items-center  ">
         {products.map(({ id, title, image, count, price }) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.5,
+            }}
             key={id}
             className="max-w-sm border border-primary/75 w-full bg-white rounded-lg shadow-md overflow-hidden mx-2 my-4 hover:shadow-lg transition-shadow duration-300"
           >
@@ -85,7 +91,7 @@ export default function Cards({ products }) {
                 <span className="inline md:hidden">Pesan</span>
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       <ToastContainer />

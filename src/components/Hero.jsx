@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router";
-
-import HeroImg from "../assets/hero_img.jpg";
+import { motion } from "motion/react";
 import HeroImg02 from "../assets/hero_img_02.jpg";
 
 export default function Hero() {
   return (
-    <section className="text-gray-600 bg-slate-100 body-font min-h-80">
+    <motion.section
+      initial={{ x: -50, opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.5, type: "spring" }}
+      className="text-gray-600 bg-slate-100 body-font min-h-80"
+    >
       <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
         <div className=" md:w-1/2  w-5/6 mb-10 md:mb-0">
           <img
@@ -31,6 +35,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
