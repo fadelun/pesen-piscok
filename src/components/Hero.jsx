@@ -39,9 +39,9 @@ export default function Hero() {
           </div>
         </div>
         {/* hero 2 */}
-        <div className=" flex md:flex-row flex-col-reverse items-center">
-          <div className="lg:flex-grow  flex flex-col md:items-start md:text-left items-center text-center">
-            <h2 className=" sm:text-4xl text-2xl mb-4 font-bold text-gray-900">
+        <div className="  flex md:flex-row flex-col-reverse items-center">
+          <div className="md:w-1/2 lg:pr-24 md:pr-16 lg:flex-grow  flex flex-col md:items-start md:text-left items-center text-center">
+            <h2 className=" sm:text-4xl text-2xl mb-4 font-bold text-gray-900 ">
               Bisa dibawa kemana-kemana
             </h2>
 
