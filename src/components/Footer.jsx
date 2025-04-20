@@ -5,7 +5,7 @@ export default function Footer() {
   const links = [
     { icon: <Instagram />, to: "https://www.instagram.com/fadelun_10/" },
     { icon: <Linkedin />, to: "https://www.linkedin.com/in/muhammadfadll" },
-    { icon: <Globe />, to: "https://fadelun.my.id/" },
+    { icon: <Globe />, to: "https://fadelun.vercel.app/" },
   ];
 
   const openWA = "https://wa.me/+6281271269864?";
